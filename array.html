@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        div{
+            text-align: center;
+        }
+        button{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    
+
+<div>
+    <input type="text" placeholder="Write here with a ,">
+    <button>Show</button>
+    <p class="output"></p>
+
+    <p></p>
+
+    <input type="text" class="srcbox" placeholder="search">
+<button class="search">Search</button>
+<p class="result"></p>
+
+</div>
+
+
+<script>
+
+let allInputs = []
+let inputTexts = document.querySelector('input')
+let showBtn = document.querySelector('button')
+let output = document.querySelector('.output')
+let srcText = document.querySelector('.srcbox')
+let searchBtn = document.querySelector('.search')
+let shwoResult = document.querySelector('.result')
+
+
+
+showBtn.addEventListener('click', function (){
+allInputs = []
+let values = inputTexts.value.split(',')
+for(let i=0; i < values.length; i++){
+allInputs.push(values[i])
+}
+
+output.innerHTML += allInputs
+inputTexts.value = ""
+})
+
+searchBtn.addEventListener('click', function() {
+
+    let input = srcText.value.trim().toLowerCase(); // convert input to lowercase
+
+    for(let i = 0; i < allInputs.length; i++){
+        if(allInputs[i].trim().toLowerCase() === input){ // compare lowercase
+            shwoResult.innerHTML = input + ' is found'; // show lowercase
+            srcText.value = '';
+            return;
+        }
+    }
+
+    shwoResult.innerHTML = input + ' is not found'; // show lowercase
+    srcText.value = '';
+});
+
+</script> 
+
+
+
+
+</body>
+</html>
